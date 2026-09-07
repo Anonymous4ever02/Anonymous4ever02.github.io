@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Little Question ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:linear-gradient(135deg,#fff1f5,#ffe4ec,#fff7fa);
+ color:#3b2028; overflow:hidden;
+}
+.card{
+ width:min(92vw,520px); padding:42px 28px; text-align:center;
+ background:rgba(255,255,255,.88); border-radius:28px;
+ box-shadow:0 18px 60px rgba(80,20,40,.16);
+}
+.heart{font-size:52px; animation:pulse 1.6s infinite}
+h1{font-size:30px;margin:14px 0 10px}
+p{font-size:18px;line-height:1.55;margin:10px 0 24px}
+.buttons{display:flex;gap:14px;justify-content:center;position:relative;min-height:58px}
+button{
+ border:0;border-radius:999px;padding:15px 28px;font-size:17px;font-weight:700;
+ cursor:pointer;transition:.18s;box-shadow:0 7px 18px rgba(70,20,35,.12)
+}
+.yes{background:#e83e68;color:white}
+.no{background:#f1e6e9;color:#5d4148;position:relative}
+#success{display:none}
+.small{font-size:14px;opacity:.65;margin-top:20px}
+@keyframes pulse{50%{transform:scale(1.12)}}
+@keyframes pop{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div id="question">
+    <div class="heart">❤️</div>
+    <h1>I’ve been wanting to ask you something…</h1>
+    <p><strong>Do you wanna be mine?</strong> 💕</p>
+    <div class="buttons">
+      <button class="yes" onclick="yes()">YES ❤️</button>
+      <button class="no" id="no" onclick="nope()">NO 🙈</button>
+    </div>
+    <div class="small">Choose wisely… 👀</div>
+  </div>
+
+  <div id="success">
+    <div class="heart">🥹❤️</div>
+    <h1>It’s official!</h1>
+    <p><strong>I knew you’d say yes. ❤️</strong></p>
+    <p>Okay… you’re mine, and I’m yours. 💕<br>
+    Here’s to making this official and creating a whole lot of memories together.</p>
+    <div style="font-size:30px">💗✨🥰✨💗</div>
+  </div>
+</div>
+
+<script>
+const noBtn=document.getElementById('no');
+function yes(){
+ document.getElementById('question').style.display='none';
+ const s=document.getElementById('success');
+ s.style.display='block'; s.style.animation='pop .45s ease';
+ for(let i=0;i<18;i++){
+   const e=document.createElement('div');
+   e.textContent=['❤️','💕','✨','💗'][Math.floor(Math.random()*4)];
+   e.style.position='fixed'; e.style.left=Math.random()*100+'vw';
+   e.style.top='105vh'; e.style.fontSize=(18+Math.random()*20)+'px';
+   e.style.transition='transform 2.2s ease, opacity 2.2s ease';
+   document.body.appendChild(e);
+   requestAnimationFrame(()=>{e.style.transform='translateY(-120vh) rotate(360deg)';e.style.opacity='0'});
+   setTimeout(()=>e.remove(),2300);
+ }
+}
+function nope(){
+ const x=(Math.random()*260)-130, y=(Math.random()*130)-65;
+ noBtn.style.transform=`translate(${x}px,${y}px)`;
+}
+</script>
+</body>
+</html>
